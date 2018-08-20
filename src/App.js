@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from '../node_modules/axios';
 
-
 import List  from './components/list';
-import Header from './components/header';
+import Header from './components/header/header';
 
 
 class App extends Component {
@@ -15,6 +14,9 @@ class App extends Component {
       animeData: [],  // <-- ALL DATA  PASS FROM api 
       charData: []    // <-- ALL CHAR DATA
     }
+
+    this.deletePerson = this.deletePerson.bind(this);
+
   }
   // GET DATA FROM MY SERVER
   componentDidMount() {
@@ -32,8 +34,20 @@ class App extends Component {
        this.setState({ charData: response.data.data[0].attributes })  // <-- STORE DATA ON MY ARRAY
     // 
     })
-
   }
+
+
+  // FUNCTION TO GET ID FROM SERVER 
+  deletePerson(id) {
+    axios.delete(`/api/anime/${id}`)
+      .then((response) => {
+        // console.log(response);
+        this.setState({ charData: response.data })
+      })
+      .catch(error => console.log(error))
+      
+  }
+
   render() {
 
     // console.log(this.state.charData);
@@ -41,9 +55,8 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <List list={ this.state.animeData }/>
+        <List list={ this.state.animeData }  deletePerson={this.deletePerson}/>
         
-        {/* <CharInfo charInfo={ this.state.charData} /> */}
       </div>
     );
   }

@@ -1,0 +1,11 @@
+.container {
+  border: 1px solid red;
+  height: 10vh;
+  background: lightcyan;
+}
+
+.input {
+  background: rgb(247, 234, 234);
+  width: 170px;
+  
+}

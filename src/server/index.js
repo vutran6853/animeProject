@@ -6,7 +6,7 @@ const cors = require('cors');
 const axios = require('axios');
 
 // OBJECT 
-const { getAnime } = require('../controller/main');
+const { getAnime, addDescription,  deletePerson } = require('../controller/main');
 
 const port = 3002;
 
@@ -16,7 +16,10 @@ app.use(cors());
 
 
 //  SET-UP FOR ENDPOINT
-app.get('/api/anime', getAnime); 
+app.get('/api/anime', getAnime);
+app.delete('/api/anime/:id', deletePerson);
+app.post('/api/anime', addDescription);
+
 
 
 //  START SERVER AND LISTEN
