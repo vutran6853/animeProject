@@ -6,8 +6,8 @@ class Header extends Component {
   
   render() { 
     return ( 
-      <div class="jumbotron">
-        <h3>HEADER Component</h3>
+      <div className="jumbotron">
+        <h3>Anime Gallery</h3>
 
       </div>
 

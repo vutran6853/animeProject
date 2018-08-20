@@ -8,7 +8,7 @@ class InputBox extends Component {
     this.state = { 
       oldName: [],      // <-- THIS IS EM
       newDescription: '',
-      displayDedcription: ''
+      displayDescription: ''
      }
      
      // BIND SINCE FUNCTION IS NOT ARROW FUNCTION 
@@ -28,31 +28,30 @@ class InputBox extends Component {
   }
 
   addDescription() {
-    axios.post('/api/anime', { Description: this.state.newDescription })
+    axios.post(`/api/anime/${this.props.id}`, { description: this.state.newDescription })
     .then(response => {
-       console.log(response.data) 
-      this.setState({ displayDedcription: response })
+       console.log(response) 
+       this.setState({ displayDescription: response })
     })
     .catch(error => console.log(error))
     
   }
 
-        
   render() {
     
     return ( 
 
       <div>
-        <span></span>
-        <span >{this.state.newDescription}</span>
+        <span> {this.state.newDescription} </span>
+        <span> {this.props.displayDescription} </span>
         <input onChange={e => this.handleChange(e.target.value) }    
               value={this.state.newDescription}
-              class="input"
+              className="input"
               type="text" placeholder="Enter new Description">
         </input>
         <button 
-              onClick={e => this.addDescription(e)   }
-              class="btn btn-outline-primary">Add Description
+              onClick={() => this.addDescription()   }
+              className="btn btn-outline-primary">Add Description
         </button>
 
 

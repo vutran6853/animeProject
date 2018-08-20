@@ -18,7 +18,7 @@ app.use(cors());
 //  SET-UP FOR ENDPOINT
 app.get('/api/anime', getAnime);
 app.delete('/api/anime/:id', deletePerson);
-app.post('/api/anime', addDescription);
+app.post('/api/anime/:id', addDescription);
 
 
 

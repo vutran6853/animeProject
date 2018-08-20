@@ -5,7 +5,6 @@ import axios from '../node_modules/axios';
 import List  from './components/list';
 import Header from './components/header/header';
 
-
 class App extends Component {
   constructor() {
     super();
@@ -22,18 +21,11 @@ class App extends Component {
   componentDidMount() {
     axios.get('/api/anime')    
     .then( response => { 
-      //  console.log(response.data.data);
-      this.setState({ animeData: response.data.data })  // <-- STORE DATA ON MY ARRAY
+        // console.log(response.data.data);
+      this.setState({ animeData: response.data })  // <-- STORE DATA ON MY ARRAY
     // 
     })
 
-    //  GET ONE CHAR INFO BY INDEX FROM MY SERVER
-    axios.get('/api/anime')    
-    .then( response => { 
-      // console.log(response.data.data[0].attributes);
-       this.setState({ charData: response.data.data[0].attributes })  // <-- STORE DATA ON MY ARRAY
-    // 
-    })
   }
 
 
@@ -42,7 +34,7 @@ class App extends Component {
     axios.delete(`/api/anime/${id}`)
       .then((response) => {
         // console.log(response);
-        this.setState({ charData: response.data })
+        this.setState({ animeData: response.data })
       })
       .catch(error => console.log(error))
       
@@ -50,10 +42,10 @@ class App extends Component {
 
   render() {
 
-    // console.log(this.state.charData);
+      // console.log(this.state.animeData);
 
     return (
-      <div className="App">
+      <div className="App " >
         <Header />
         <List list={ this.state.animeData }  deletePerson={this.deletePerson}/>
         
