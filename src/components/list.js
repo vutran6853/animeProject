@@ -16,7 +16,7 @@ let List = props => {
     return (
      <div key={ val.id } class="cards ">
       
-        <div className="card card-body  ">
+        <div className="card card-body">
              
               <button type="button" className="close" aria-label="Close">
                 <span aria-hidden="true" onClick={() => props.deletePerson(10)}>&times;</span>
@@ -26,7 +26,6 @@ let List = props => {
               <img src={val["attributes"].posterImage.tiny} className="card-img-top rounded-circle" />
               <h6>{val.name}</h6>
               <InputBox id={val.id} description={val.description}/>
-
           </div>
          
           
