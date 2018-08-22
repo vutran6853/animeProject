@@ -1,6 +1,10 @@
 .cards {
   width: 13em;
   float: left;
+  border: 5px solid red;
+  display: flex;
+  justify-content: flex-end;
+
 }
 
 

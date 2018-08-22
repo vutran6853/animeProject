@@ -4,6 +4,7 @@ import axios from '../node_modules/axios';
 
 import List  from './components/list';
 import Header from './components/header/header';
+import Film from './components/film';
 
 class App extends Component {
   constructor() {
@@ -11,7 +12,8 @@ class App extends Component {
 
     this.state = {
       animeData: [],  // <-- ALL DATA  PASS FROM api 
-      charData: []    // <-- ALL CHAR DATA
+      charData: [],    // <-- ALL CHAR DATA
+     
     }
 
     this.deletePerson = this.deletePerson.bind(this);
@@ -21,9 +23,8 @@ class App extends Component {
   componentDidMount() {
     axios.get('/api/anime')    
     .then( response => { 
-        // console.log(response.data.data);
-      this.setState({ animeData: response.data })  // <-- STORE DATA ON MY ARRAY
-    // 
+    // console.log(response.data.data);
+      this.setState({ animeData: response.data })   
     })
 
   }
@@ -42,13 +43,13 @@ class App extends Component {
 
   render() {
 
-      // console.log(this.state.animeData);
-
     return (
       <div className="App " >
+     
         <Header />
+       
         <List list={ this.state.animeData }  deletePerson={this.deletePerson}/>
-        
+
       </div>
     );
   }

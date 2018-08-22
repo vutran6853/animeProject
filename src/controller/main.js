@@ -2,7 +2,8 @@ const axios = require('axios');
 
 //  STORE DATA FROM APIAND PASS THIS TO .app.js > animeDate ARRAY
 let animeData = [];
-// let newDescription = [];
+
+let animeFilms = [];
 // let charData = [];
 
 
@@ -12,9 +13,21 @@ axios.get("https://kitsu.io/api/edge/anime")
   //  console.log(response.data)  
   animeData = response.data.data})
 
+// GET ANIME FILM DATA FROM API AND STORE IN MY ARRAY
+axios.get("https://ghibliapi.herokuapp.com/films")
+.then(response => {
+   console.log(response.data)
+  animeFilms = response.data
+})
+
+
 //  SET-UP FOR ENDPOINT AND RUN WHEN CALL
 let getAnime = (req, res) => {
   res.status(200).json(animeData);
+}
+
+let getAnimeFilm = (req, res) => {
+  res.status(200).json(animeFilms)
 }
 
 
@@ -30,26 +43,20 @@ let addDescription = (req, res) => {
 }
 
 
-
-
-/////////       STILL NOT WORK RIGHT       ////
 // FUNCTION TO FIND ID FROM SERVER AND RETURN IT 
 const deletePerson = (req, res) => {
-const anime=charData.find(c => c.id === parseInt(req.params.id));
-const i = charData.indexOf(anime);
-charData.splice(i, 1);
-
- console.log("ANIMEID     ",animeData)
-
+const anime=animeData.find(c => c.id === parseInt(req.params.id));
+const i = animeData.indexOf(anime);
+animeData.splice(i, 1);
+  // console.log("ANIMEID     ",animeData)
 res.status(200).json(animeData);
 };
-/////////  ^   ^  STILL NOT WORK RIGHT  ^   ^  ////
-
 
 
 // EXPORT TO ENDPOINT
 module.exports = {
   getAnime,
   addDescription,
-  deletePerson
+  deletePerson,
+  getAnimeFilm
 }

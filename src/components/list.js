@@ -1,6 +1,7 @@
 import React from 'react';
 import list from './list.css';
 import InputBox from './inputBox';
+import Film from '../components/film';
 
 // MIGHT CHANGE INTO CARD FORMAT FOR LAYOUT. <--- WORK ON THIS LATER
 
@@ -14,18 +15,19 @@ let List = props => {
         // console.log(val["attributes"].posterImage.tiny) <-- image location
 
     return (
-     <div key={ val.id } class="cards ">
+     <div key={ val.id } class="card card-body">
       
-        <div className="card card-body">
+        <div className="">
              
               <button type="button" className="close" aria-label="Close">
-                <span aria-hidden="true" onClick={() => props.deletePerson(10)}>&times;</span>
+                <span aria-hidden="true" onClick={() => props.deletePerson(val.id)}>&times;</span>
               </button>
-              <h3 className="card-title  "> { val["attributes"].canonicalTitle } </h3>
+              <h3 className="  "> { val["attributes"].canonicalTitle } </h3>
               <h6> { val["attributes"].averageRating } /100 </h6>
-              <img src={val["attributes"].posterImage.tiny} className="card-img-top rounded-circle" />
+              <img src={val["attributes"].posterImage.tiny} className="" />
               <h6>{val.name}</h6>
               <InputBox id={val.id} description={val.description}/>
+              <Film/>
           </div>
          
           

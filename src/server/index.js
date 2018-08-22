@@ -6,7 +6,7 @@ const cors = require('cors');
 const axios = require('axios');
 
 // OBJECT 
-const { getAnime, addDescription,  deletePerson } = require('../controller/main');
+const { getAnime, addDescription,  deletePerson, getAnimeFilm } = require('../controller/main');
 
 const port = 3002;
 
@@ -20,7 +20,7 @@ app.get('/api/anime', getAnime);
 app.delete('/api/anime/:id', deletePerson);
 app.post('/api/anime/:id', addDescription);
 
-
+app.get('/api/animeFilm', getAnimeFilm);
 
 //  START SERVER AND LISTEN
 app.listen(port, () => {
